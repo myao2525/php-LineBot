@@ -16,4 +16,16 @@
     // テキストを返信
     $bot->replyText($event->getReplyToken(), 'TextMessage');
   }
+
+  // テキストを返信。引数はLINEBot 返信先、テキスト
+  function replyTextMessage($bot, $replyToken, $text) {
+    // 返信を行いレスポンスを取得
+    // TextMessageBuilderの引数はテキスト
+    $response = $bot->replyMessage($replyToken, new \LINE\LINEBot\MessageBuilder\TextMessageBuilder($text));
+    // レスポンスが異常な場合
+    if (!$response->isSucceeded()) {
+      // エラー内容を出力
+      error_log('Failed! '. $response->getHTTPStatus . ' '. $response->getRawBody());
+    }
+  }
 ?>
