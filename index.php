@@ -14,7 +14,8 @@
       // 配列の格納された各イベントをループで処理
   foreach ($events as $event) {
     // テキストを返信
-    $bot->replyText($event->getReplyToken(), 'TextMessage');
+    // $bot->replyText($event->getReplyToken(), 'TextMessage');
+    replyTextMessage($bot, $event->getReplyToken(), 'TextMessage');
   }
 
   // テキストを返信。引数はLINEBot 返信先、テキスト
