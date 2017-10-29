@@ -24,9 +24,11 @@
   //     '/imgs/preview.jpg');
   // }
     // 位置情報を返信
-  replyLocationMessage($bot, $event->getReplyToken(), 'LINE', 
-    '東京都渋谷区渋谷2-21-1 ヒカリエ27階',
-    35.659025, 139.703473);
+  // replyLocationMessage($bot, $event->getReplyToken(), 'LINE', 
+  //   '東京都渋谷区渋谷2-21-1 ヒカリエ27階',
+  //   35.659025, 139.703473);
+    // スタンプを送信
+   replyStickerMessage($bot, $event->getReplyToken(), 1, 1);
 }
   // テキストを返信。引数はLINEBot 返信先、テキスト
   function replyTextMessage($bot, $replyToken, $text) {
@@ -56,6 +58,16 @@
     // 住所、緯度、経度
     $response = $bot->replyMessage($replyToken, new \LINE\LINEBot\MessageBuilder\LocationMessageBuilder(
       $title, $address, $lat, $lon));
+    if (!$response->isSucceeded()) {
+      error_log('Failed!'. $response->getHTTPStatus . ' ' .$response->getRawBody());
+    }
+  }
+  // スタンプを返信。引数はLINEBot、返信先、
+  // スタンプのパッケージID、スタンプID
+  function replyStickerMessage($bot, $replyToken, $packageId, $address, $stickerId){
+    // StickerMessageBuilderの引数はスタンプのパッケージID、スタンプID
+    $response = $bot->replyMessage($replyToken, new \LINE\LINEBot\MessageBuilder\StickerMessageBuilder(
+      $packageId, $stickerId));
     if (!$response->isSucceeded()) {
       error_log('Failed!'. $response->getHTTPStatus . ' ' .$response->getRawBody());
     }
