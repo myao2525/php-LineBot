@@ -64,7 +64,7 @@
   }
   // スタンプを返信。引数はLINEBot、返信先、
   // スタンプのパッケージID、スタンプID
-  function replyStickerMessage($bot, $replyToken, $packageId, $address, $stickerId){
+  function replyStickerMessage($bot, $replyToken, $packageId, $stickerId){
     // StickerMessageBuilderの引数はスタンプのパッケージID、スタンプID
     $response = $bot->replyMessage($replyToken, new \LINE\LINEBot\MessageBuilder\StickerMessageBuilder(
       $packageId, $stickerId));
