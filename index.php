@@ -24,7 +24,7 @@
   //     '/imgs/preview.jpg');
   // }
     // 位置情報を返信
-  replyImageMessage($bot, $event->getReplyToken(), 'LINE', 
+  replyLocationMessage($bot, $event->getReplyToken(), 'LINE', 
     '東京都渋谷区渋谷2-21-1 ヒカリエ27階',
     35.659025, 139.703473);
 
