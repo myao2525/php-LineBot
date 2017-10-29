@@ -27,7 +27,7 @@
   replyLocationMessage($bot, $event->getReplyToken(), 'LINE', 
     '東京都渋谷区渋谷2-21-1 ヒカリエ27階',
     35.659025, 139.703473);
-
+}
   // テキストを返信。引数はLINEBot 返信先、テキスト
   function replyTextMessage($bot, $replyToken, $text) {
     // 返信を行いレスポンスを取得
@@ -51,7 +51,7 @@
     // 位置情報を返信。引数はLINEBot,返信先、タイトル、
   // 住所、緯度、経度
   function replyLocationMessage($bot, $replyToken, $title, $address,
-    $lat,$lon) {
+    $lat, $lon) {
     // LocationMessageBuilderの引数はダイアログのタイトル、
     // 住所、緯度、経度
     $response = $bot->replyMessage($replyToken, new \LINE\LINEBot\MessageBuilder\LocationMessageBuilder(
