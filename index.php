@@ -28,7 +28,11 @@
   //   '東京都渋谷区渋谷2-21-1 ヒカリエ27階',
   //   35.659025, 139.703473);
     // スタンプを送信
-   replyStickerMessage($bot, $event->getReplyToken(), 1, 1);
+  //  replyStickerMessage($bot, $event->getReplyToken(), 1, 1);
+  // 動画を返信
+  replyVideoMessage($bot, $event->getReplyToken(),
+    'https://' . $_SERVER['HTTP_HOST'] . '/videos/sample.mp4',
+    'https://' . $_SERVER['HTTP_HOST'] . '/videos/sample_preview.jpg');
 }
   // テキストを返信。引数はLINEBot 返信先、テキスト
   function replyTextMessage($bot, $replyToken, $text) {
@@ -72,4 +76,16 @@
       error_log('Failed!'. $response->getHTTPStatus . ' ' .$response->getRawBody());
     }
   }
+  // 動画を返信。引数はLINEBot,返信先、動画URL,サムネイルURL
+  function replyVideoMessage($bot, $replyToken, $originalContentUrl,
+      $previewImageUrl) {
+        // videoMessageBuilderの引数は動画URL,サムネイルURL
+        $response = $bot->replyMessage($replyToken, new \LINE\LINEBot\
+          MessageBuilder\VideoMessageBuilder(
+            $originalContentUrl, $previewImageUrl));
+        if (!$response->isSucceeded()) {
+          error_log('Failled! '. $response->getHTTPStatus . ' ' .
+            $response->getRawBody());
+        }
+      }
 ?>
